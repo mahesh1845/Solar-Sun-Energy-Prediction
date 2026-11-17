@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard · SolarCast</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="dashboard">
+<header class="topbar"><div class="in">
+  <a class="logo" href="index.html"><span class="sun"></span>SolarCast</a>
+  <nav>
+    <a href="index.html" >Predict</a>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="about.html" >About</a>
+  </nav>
+</div></header>
+<main class="wrap">
+  <h1>Dashboard</h1>
+  <p class="sub">Your predictions, performance and model accuracy at a glance.</p>
+
+  <div class="toolbar">
+    <a class="btn ghost" href="index.html">+ New prediction</a>
+    <button class="btn ghost" id="sampleBtn">Add 30 days of sample data</button>
+    <a class="btn ghost" href="/api/report.csv" id="csvBtn">⬇ Download report (CSV)</a>
+    <button class="btn danger" id="clearBtn">Clear history</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span>Predicted power</span><b id="sPower">—</b><small>latest prediction</small></div>
+    <div class="stat"><span>Total energy</span><b id="sEnergy">—</b><small>sum of predicted daily energy</small></div>
+    <div class="stat"><span>Panel efficiency</span><b id="sEff">—</b><small>average</small></div>
+    <div class="stat"><span>Temp · Irradiation</span><b id="sWeather">—</b><small>latest prediction</small></div>
+  </div>
+
+  <div class="row">
+    <section class="card">
+      <h2>Power generation</h2>
+      <canvas id="powerChart" height="240"></canvas>
+      <p class="empty" id="powerEmpty" hidden>No predictions yet.</p>
+    </section>
+    <section class="card">
+      <h2>Weather data</h2>
+      <canvas id="weatherChart" height="240"></canvas>
+      <div class="legend"><span><i style="background:#f59e0b"></i>Temperature (°C)</span><span><i style="background:#1565a8"></i>Irradiation (÷10 W/m²)</span></div>
+    </section>
+  </div>
+
+  <div class="row">
+    <section class="card">
+      <h2>Energy analytics</h2>
+      <div class="tabs">
+        <button class="tab on" data-k="daily">Daily</button>
+        <button class="tab" data-k="weekly">Weekly</button>
+        <button class="tab" data-k="monthly">Monthly</button>
+      </div>
+      <canvas id="anaChart" height="240"></canvas>
+    </section>
+    <section class="card">
+      <h2>Actual vs predicted power</h2>
+      <canvas id="cmpChart" height="240"></canvas>
+      <div class="legend"><span><i style="background:#1565a8"></i>Actual (test data)</span><span><i style="background:#f59e0b"></i>Predicted</span></div>
+    </section>
+  </div>
+
+  <section class="card" style="margin-bottom:24px">
+    <h2>Model accuracy</h2>
+    <div class="metric-list" id="metrics"></div>
+  </section>
+
+  <section class="card">
+    <h2>Prediction history</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Time</th><th>Temp °C</th><th>Humidity %</th><th>Irradiation</th><th>Wind m/s</th><th>Power kW</th><th>Energy kWh</th><th>Efficiency</th><th>Savings ₹</th><th>CO₂ kg</th></tr></thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<footer>SolarCast · Solar Power Generation Prediction System</footer>
+<script src="script.js"></script>
+</body>
+</html>
