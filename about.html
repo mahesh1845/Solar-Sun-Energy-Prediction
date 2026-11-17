@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · SolarCast</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="about">
+<header class="topbar"><div class="in">
+  <a class="logo" href="index.html"><span class="sun"></span>SolarCast</a>
+  <nav>
+    <a href="index.html" >Predict</a>
+    <a href="dashboard.html" >Dashboard</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
+</div></header>
+<main class="wrap">
+  <section class="card about">
+    <h1>About SolarCast</h1>
+    <p class="sub">A machine-learning web app that predicts solar power generation from weather conditions.</p>
+
+    <h2>How it works</h2>
+    <p>You enter temperature, humidity, solar irradiation and wind speed. A scikit-learn regression model trained on <code>dataset.csv</code> predicts the power output in kW. Daily energy is estimated as power × peak sun hours, and from that we compute bill savings and CO₂ reduction.</p>
+
+    <h2>Features</h2>
+    <ul>
+      <li>Real-time prediction from user input, with predicted power (kW) and daily energy (kWh)</li>
+      <li>Interactive dashboard, prediction history and CSV report download</li>
+      <li>Power generation graph, weather visualisation, daily / weekly / monthly analytics</li>
+      <li>Actual vs predicted comparison and model accuracy (R², MAE, RMSE)</li>
+      <li>Panel efficiency estimation, best time to generate, performance analysis</li>
+      <li>Low generation alert, high temperature warning, recommendations</li>
+      <li>Estimated electricity bill savings and CO₂ emission reduction</li>
+    </ul>
+
+    <h2>Tech stack</h2>
+    <p><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">scikit-learn</span></p>
+
+    <h2>Assumptions</h2>
+    <ul>
+      <li>Simulated system: 5 kW array, 28 m² panel area (used for efficiency).</li>
+      <li>CO₂ factor 0.82 kg per kWh (approximate Indian grid average).</li>
+      <li>The included dataset is synthetic. Replace <code>dataset.csv</code> with real measurements (columns: temperature, humidity, irradiation, wind_speed, power_kw) and run <code>python train.py</code>.</li>
+    </ul>
+  </section>
+</main>
+<footer>SolarCast · Solar Power Generation Prediction System</footer>
+<script src="script.js"></script>
+</body>
+</html>
