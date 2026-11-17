@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predict · SolarCast</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="predict">
+<header class="topbar"><div class="in">
+  <a class="logo" href="index.html"><span class="sun"></span>SolarCast</a>
+  <nav>
+    <a href="index.html" class="active">Predict</a>
+    <a href="dashboard.html" >Dashboard</a>
+    <a href="about.html" >About</a>
+  </nav>
+</div></header>
+<main class="wrap grid2">
+
+  <section class="card">
+    <h1>Predict solar output</h1>
+    <p class="sub">Enter the weather at your site to see expected power and daily energy.</p>
+
+    <div class="fields">
+      <div><label for="temperature">Temperature (°C)</label><input id="temperature" type="number" step="0.1" value="32"></div>
+      <div><label for="humidity">Humidity (%)</label><input id="humidity" type="number" step="0.1" value="45"></div>
+      <div><label for="irradiation">Solar irradiation (W/m²)</label><input id="irradiation" type="number" step="1" value="700"></div>
+      <div><label for="wind_speed">Wind speed (m/s)</label><input id="wind_speed" type="number" step="0.1" value="3"></div>
+
+      <fieldset>
+        <legend>Estimate settings</legend>
+        <div class="fields">
+          <div><label for="sun_hours">Peak sun hours per day</label><input id="sun_hours" type="number" step="0.5" value="6"></div>
+          <div><label for="tariff">Tariff per kWh (₹)</label><input id="tariff" type="number" step="0.1" value="8"></div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button class="btn primary" id="predictBtn">Predict power</button>
+    <div class="error" id="error"></div>
+  </section>
+
+  <section class="card result">
+    <div class="gauge">
+      <svg viewBox="0 0 300 170">
+        <path class="track" d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke-width="26" stroke-linecap="round"/>
+        <path id="gaugeFill" class="fill" d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke-width="26" stroke-linecap="round"/>
+      </svg>
+      <div class="center"><div class="big" id="powerVal">—</div><div class="unit" id="powerUnit">kW</div></div>
+    </div>
+    <p class="hint" id="hint">Run a prediction to see results.</p>
+
+    <div id="details" hidden>
+      <div class="kpis">
+        <div class="kpi"><span>Daily energy</span><b id="energy">—</b></div>
+        <div class="kpi"><span>Panel efficiency</span><b id="eff">—</b></div>
+        <div class="kpi"><span>Bill savings / day</span><b id="savings">—</b></div>
+        <div class="kpi"><span>CO₂ avoided / day</span><b id="co2">—</b></div>
+      </div>
+      <div class="alerts" id="alerts"></div>
+      <div class="info">
+        <p><b>Best time to generate:</b> <span id="best"></span></p>
+        <p><b>Performance:</b> <span id="perf"></span></p>
+        <p><b>Recommendation:</b> <span id="rec"></span></p>
+      </div>
+      <div class="chart-box">
+        <h2>Expected power through the day</h2>
+        <canvas id="hourChart" height="200"></canvas>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>SolarCast · Solar Power Generation Prediction System</footer>
+<script src="script.js"></script>
+</body>
+</html>
